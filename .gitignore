@@ -1,0 +1,18 @@
+### Maven ###
+!.mvn/wrapper/maven-wrapper.jar
+target/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+##other###
+*.log
+
+# VS Code Java
+*.prefs
+.project
+.classpath
+.factorypath
