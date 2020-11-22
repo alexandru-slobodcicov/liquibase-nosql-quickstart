@@ -15,8 +15,6 @@ public class MongoLiquibaseRunnerConfig {
         return new MongoLiquibaseRunner(database);
     }
 
-
-
     /**
      * @return Database with connection
      * @throws DatabaseException when cannot connect

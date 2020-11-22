@@ -22,13 +22,8 @@ public class MongoLiquibaseRunner implements CommandLineRunner, ResourceLoaderAw
         this.database = database;
     }
 
-    public void run1(final String... args) throws Exception {
-        Liquibase liquiBase = new Liquibase("liquibase/changelog.create-collection.test.xml", new SpringResourceAccessor(resourceLoader), database);
-        liquiBase.update("");
-    }
-
     public void run(final String... args) throws Exception {
-        Liquibase liquiBase = new Liquibase("liquibase/changelog.generic.json", new SpringResourceAccessor(resourceLoader), database);
+        Liquibase liquiBase = new Liquibase("liquibase/changelog.custom.xml", new SpringResourceAccessor(resourceLoader), database);
         liquiBase.update("");
     }
 

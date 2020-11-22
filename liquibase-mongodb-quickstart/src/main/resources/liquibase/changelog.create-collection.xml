@@ -25,8 +25,9 @@
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
     <changeSet id="1" author="alex">
-            <ext:createCollection collectionName="createCollectionWithValidatorAndOptionsTest">
-                <ext:options>
+        <ext:createCollection collectionName="collectionWithValidator">
+            <ext:options>
+                <!-- @formatter:off -->
                     {
                     validator: {
                         $jsonSchema: {
@@ -47,14 +48,8 @@
                     validationAction: "warn",
                     validationLevel: "strict"
                     }
-                </ext:options>
-            </ext:createCollection>
-
-        <ext:createCollection collectionName="createCollectionWithEmptyValidatorTest">
-            <ext:options>
-
+                <!-- @formatter:on -->
             </ext:options>
-
         </ext:createCollection>
 
         <ext:createCollection collectionName="createCollectionWithNoValidator"/>
