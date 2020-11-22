@@ -1,0 +1,102 @@
+{
+  "databaseChangeLog": [
+    {
+      "changeSet": {
+        "id": "1",
+        "author": "Alex",
+        "comment": "Create person collection",
+        "changes": [
+          {
+            "createCollection": {
+              "collectionName": "person"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "changeSet": {
+        "id": "2",
+        "author": "Alex",
+        "comment": "Create person index",
+        "changes": [
+          {
+            "createIndex": {
+              "collectionName": "person",
+              "keys": {
+                "$rawJson": {
+                  "name": 1
+                }
+              },
+              "options": {
+                "$rawJson": {
+                    "unique": true, "name": "ui_personName"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "changeSet": {
+        "id": "2",
+        "author": "Nick",
+        "comment": "Populate person table",
+        "changes": [
+          {
+            "insertOne": {
+              "collectionName": "person",
+              "document": {
+                "$rawJson": {
+                  "name": "Alexandru Slobodcicov",
+                  "address": "Moldova"
+                }
+              }
+            }
+          },
+          {
+            "insertMany": {
+              "collectionName": "person",
+              "documents": {
+                "$rawJson": [
+                  {
+                    "name": "Nicolas Bodros",
+                    "address": "Spain",
+                    "age": 34
+                  },
+                  {
+                    "name": "Luka Modrich",
+                    "address": null,
+                    "age": 55
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        "rollback" : [
+          {
+            "runCommand": {
+              "command": {
+                "$rawJson": {
+                  "delete": "person",
+                  "deletes": [
+                    {
+                      "q": {
+                        "age": {
+                          "$lt" : 60
+                        }
+                      },
+                      "limit" : 0
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

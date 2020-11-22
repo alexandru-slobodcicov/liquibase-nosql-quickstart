@@ -35,3 +35,9 @@ liquibase --defaultsFile=liquibase/liquibase.properties --changeLogFile=liquibas
 mvn clean install
 cd liquibase-nosql-quickstart/liquibase-nosql-application/target || return
 java -jar liquibase-nosql-application-4.1.1-SNAPSHOT.jar
+
+# Run on CosmosDB
+start_cosmos_emulator_with_mongo.cmd
+cd liquibase-mongodb-quickstart || return
+# Maven Plugin Example
+mvn liquibase:update -f pom.xml -Dliquibase.propertyFile=src/main/resources/liquibase/liquibase.cosmos.properties -Djavax.net.ssl.trustStore="C:\workspace-java\github\certs\cacerts.jks" -Djavax.net.ssl.trustStorePassword=changeit -Dliquibase.mongodb.supportsValidator=false -Dliquibase.mongodb.adjustTrackingTablesOnStartup=false
