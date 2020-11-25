@@ -1,0 +1,148 @@
+<!--
+  #%L
+  Liquibase CosmosDB Extension
+  %%
+  Copyright (C) 2020 Mastercard
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License").
+  You may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  #L%
+  -->
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="1" author="alex">
+        <comment>Create animal container</comment>
+
+        <ext:createContainer containerName="animal">
+
+            <ext:options>
+                <!-- @formatter:off -->
+                 {
+                  "partitionKey": {
+                    "paths": [
+                      "/class"
+                    ],
+                    "kind": "Hash"
+                  },
+                  "defaultTtl": 100,
+                  "uniqueKeyPolicy": {
+                    "uniqueKeys": [
+                      {
+                        "paths": [
+                          "/species"
+                        ]
+                      }
+                    ]
+                  }
+                }
+             <!-- @formatter:on -->
+            </ext:options>
+
+        </ext:createContainer>
+
+    </changeSet>
+
+    <changeSet id="2" author="alex">
+
+        <comment>Insert animals</comment>
+
+        <ext:createItem containerName="animal">
+            <ext:document>
+                <!-- @formatter:off -->
+                {
+                    "id" : "000000001",
+                    "class" : "Mammals",
+                    "species" : "humans",
+                    "population" : 8000000000
+                }
+                <!-- @formatter:on -->
+            </ext:document>
+        </ext:createItem>
+        <ext:createItem containerName="animal">
+            <ext:document>
+                <!-- @formatter:off -->
+                {
+                    "id" : "000000002",
+                    "class" : "Reptiles",
+                    "species" : "crocodiles",
+                    "population" : 5000000
+                }
+                <!-- @formatter:on -->
+            </ext:document>
+        </ext:createItem>
+        <ext:createItem containerName="animal">
+            <ext:document>
+                <!-- @formatter:off -->
+                {
+                    "id" : "000000003",
+                    "class" : "Invertebrates",
+                    "species" : "anemone",
+                    "population" : 1000000000000000
+                }
+                <!-- @formatter:on -->
+            </ext:document>
+        </ext:createItem>
+        <ext:createItem containerName="animal">
+            <ext:document>
+                <!-- @formatter:off -->
+                {
+                    "id" : "000000004",
+                    "class" : "Mammals",
+                    "species" : "elephants",
+                    "population" : 7000000
+                }
+                <!-- @formatter:on -->
+            </ext:document>
+        </ext:createItem>
+
+    </changeSet>
+
+    <changeSet id="3" author="alex">
+
+        <comment>Update all Mammals population and region</comment>
+
+        <ext:updateEachItem containerName="animal">
+
+            <ext:query>
+                <!-- @formatter:off -->
+                {
+                    "query" : "SELECT * FROM a WHERE a.class = @class",
+                    "parameters" :
+                        [
+                            {
+                                "name" : "@class",
+                                "value" : "Mammals"
+                            }
+                        ]
+                }
+                <!-- @formatter:on -->
+            </ext:query>
+
+            <ext:document>
+                <!-- @formatter:off -->
+                {
+                    "population" : 9000000000,
+                    "region" : "All"
+                }
+                <!-- @formatter:on -->
+            </ext:document>
+
+        </ext:updateEachItem>
+
+    </changeSet>
+
+</databaseChangeLog>

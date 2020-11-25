@@ -20,12 +20,12 @@
         <spring-boot-maven-plugin.version>2.0.4.RELEASE</spring-boot-maven-plugin.version>
         <liquibase.version>4.1.1</liquibase.version>
         <liquibase-mongodb.version>4.1.1.2</liquibase-mongodb.version>
-        <!--mongodb-driver.version>3.12.7</mongodb-driver.version-->
         <spring-context.version>5.1.5.RELEASE</spring-context.version>
         <liquibase-maven-plugin.version>4.1.1</liquibase-maven-plugin.version>
         <junit-jupiter-api.version>5.7.0</junit-jupiter-api.version>
+        <liquibase-cosmosdb.version>4.1.1.0-SNAPSHOT</liquibase-cosmosdb.version>
+        <snakeyaml.version>1.12</snakeyaml.version>
     </properties>
-
 
     <dependencyManagement>
         <dependencies>
@@ -58,31 +58,16 @@
                 <version>${liquibase-mongodb.version}</version>
             </dependency>
 
-            <!--dependency>
-                <groupId>org.mongodb</groupId>
-                <artifactId>mongodb-driver</artifactId>
-                <version>${mongodb-driver.version}</version>
-            </dependency>
             <dependency>
-                <groupId>org.mongodb</groupId>
-                <artifactId>mongodb-driver-core</artifactId>
-                <version>${mongodb-driver.version}</version>
+                <groupId>org.liquibase.ext</groupId>
+                <artifactId>liquibase-cosmosdb</artifactId>
+                <version>${liquibase-cosmosdb.version}</version>
             </dependency>
-            <dependency>
-                <groupId>org.mongodb</groupId>
-                <artifactId>bson</artifactId>
-                <version>${mongodb-driver.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.mongodb</groupId>
-                <artifactId>mongo-java-driver</artifactId>
-                <version>${mongodb-driver.version}</version>
-            </dependency-->
 
             <dependency>
                 <groupId>org.yaml</groupId>
                 <artifactId>snakeyaml</artifactId>
-                <version>1.12</version>
+                <version>${snakeyaml.version}</version>
             </dependency>
 
             <dependency>

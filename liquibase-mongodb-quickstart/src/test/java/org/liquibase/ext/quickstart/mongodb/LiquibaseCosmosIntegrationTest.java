@@ -14,7 +14,7 @@ public class LiquibaseCosmosIntegrationTest {
 
     @Test
     @Disabled
-    void testMongoLiquibase() throws LiquibaseException {
+    void testMongoLiquibaseOnCosmos() throws LiquibaseException {
         MongoLiquibaseDatabase database = (MongoLiquibaseDatabase) DatabaseFactory.getInstance().openDatabase(URL, null, null, null , new ClassLoaderResourceAccessor());
 
         Liquibase liquiBase = new Liquibase("liquibase/cosmos-insert-people.json", new ClassLoaderResourceAccessor(), database);
@@ -23,7 +23,7 @@ public class LiquibaseCosmosIntegrationTest {
 
     @Test
     @Disabled
-    void testMongoLiquibaseDropAll() throws LiquibaseException {
+    void testMongoLiquibaseOnCosmosDropAll() throws LiquibaseException {
         MongoLiquibaseDatabase database = (MongoLiquibaseDatabase) DatabaseFactory.getInstance().openDatabase(URL, null, null, null , new ClassLoaderResourceAccessor());
 
         Liquibase liquiBase = new Liquibase("liquibase/cosmos-insert-people.json", new ClassLoaderResourceAccessor(), database);
