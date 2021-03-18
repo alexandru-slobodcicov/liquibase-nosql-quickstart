@@ -45,7 +45,7 @@ public class UpsertAgeChange implements CustomTaskChange, CustomTaskRollback {
      */
     public void execute(final Database database) throws CustomChangeException {
         MongoConnection connection = (MongoConnection) database.getConnection();
-        MongoCollection<Document> collection = connection.getDatabase().getCollection(getCollectionName());
+        MongoCollection<Document> collection = connection.getMongoDatabase().getCollection(getCollectionName());
         Bson updates = Updates.set("age", getAge());
         Document filter = new Document();
         collection.updateMany(filter, updates);
