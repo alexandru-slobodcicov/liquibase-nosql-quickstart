@@ -6,7 +6,7 @@ mvn clean install
 ## Run
 
 ```shell script
-java -jar liquibase-nosql-application/target/liquibase-nosql-application-4.1.1-SNAPSHOT.jar
+java -jar liquibase-nosql-application/target/liquibase-nosql-application-4.3.1-SNAPSHOT.jar
 ```
 
 ## Run Examples

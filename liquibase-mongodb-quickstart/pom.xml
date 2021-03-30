@@ -58,6 +58,9 @@
             <plugin>
                 <groupId>org.liquibase</groupId>
                 <artifactId>liquibase-maven-plugin</artifactId>
+                <configuration>
+                    <url>mongodb://localhost:27017/test_db?socketTimeoutMS=1000&amp;connectTimeoutMS=1000&amp;serverSelectionTimeoutMS=1000</url>
+                </configuration>
             </plugin>
         </plugins>
     </build>
